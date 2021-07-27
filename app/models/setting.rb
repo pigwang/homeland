@@ -99,7 +99,7 @@ class Setting < RailsSettings::Base
 
   scope :appearance do
     field :navbar_brand_html, default: -> { %(<a href="/" class="navbar-brand"><b>#{app_name}</b></a>) }
-    field :default_locale, default: "en", validates: {presence: true, inclusion: {in: %w[en zh-CN]}}
+    field :default_locale, default: "zh-CN", validates: {presence: true, inclusion: {in: %w[en zh-CN]}}
     field :auto_locale, default: "false", type: :boolean
     field :custom_head_html, default: ""
     field :navbar_html, default: ""
@@ -184,7 +184,7 @@ class Setting < RailsSettings::Base
   end
 
   scope :captcha do
-    field :captcha_enable, default: false, type: :boolean
+    field :captcha_enable, default: true , type: :boolean
     field :use_recaptcha, default: false, type: :boolean
     # default key for development env
     field :recaptcha_key, default: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
