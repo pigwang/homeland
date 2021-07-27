@@ -126,8 +126,6 @@ class Topic < ApplicationRecord
     #   @total_pages = 60
     # end
     @total_pages = 60
-    return @total_pages
-    @total_pages = 60
     @total_pages
   end
 end
