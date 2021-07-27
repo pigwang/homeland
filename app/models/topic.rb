@@ -117,14 +117,17 @@ class Topic < ApplicationRecord
   end
 
   def self.total_pages
-    return @total_pages if defined? @total_pages
-
-    total_count = Rails.cache.fetch("topics/total_count", expires_in: 1.week) do
-      unscoped.count
-    end
-    if total_count >= 1500
-      @total_pages = 60
-    end
+    # return @total_pages if defined? @total_pages
+    #
+    # total_count = Rails.cache.fetch("topics/total_count", expires_in: 1.week) do
+    #   unscoped.count
+    # end
+    # if total_count >= 1500
+    #   @total_pages = 60
+    # end
+    @total_pages = 60
+    return @total_pages
+    @total_pages = 60
     @total_pages
   end
 end

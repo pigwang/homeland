@@ -42,7 +42,12 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.unscoped.includes(:user).find(params[:id])
+    topicId = params[:id]
+    @topic = Rails.cache.fetch("#{topicId}/topic") do
+      Topic.includes(:user).find(topicId)
+    end
+
+    render_404 if @topic.user_login != params[:user_login]
     render_404 if @topic.deleted?
 
     @node = @topic.node
@@ -141,20 +146,20 @@ class TopicsController < ApplicationController
     case params[:type]
     when "excellent"
       @topic.excellent!
-      redirect_to @topic, notice: t("topics.excellent_successfully")
+      redirect_to(user_topic_path(user_login:@topic.user_login,id:@topic.id), notice: t("topics.excellent_successfully"))
     when "normal"
       @topic.normal!
-      redirect_to @topic, notice: t("topics.normal_successfully")
+      redirect_to(user_topic_path(user_login:@topic.user_login,id:@topic.id), notice: t("topics.normal_successfully"))
     when "ban"
       params[:reason_text] ||= params[:reason] || ""
       @topic.ban!(reason: params[:reason_text].strip)
-      redirect_to @topic, notice: t("topics.ban_successfully")
+      redirect_to(user_topic_path(user_login:@topic.user_login,id:@topic.id), notice: t("topics.ban_successfully"))
     when "close"
       @topic.close!
-      redirect_to @topic, notice: t("topics.close_successfully")
+      redirect_to(user_topic_path(user_login:@topic.user_login,id:@topic.id), notice: t("topics.close_successfully"))
     when "open"
       @topic.open!
-      redirect_to @topic, notice: t("topics.reopen_successfully")
+      redirect_to(user_topic_path(user_login:@topic.user_login,id:@topic.id), notice: t("topics.reopen_successfully"))
     end
   end
 

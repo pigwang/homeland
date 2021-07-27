@@ -23,7 +23,7 @@
       <td><%= truncate(reply.body, length: 50) %></td>
       <% if reply.topic %>
         <td>
-          <%= link_to(reply.topic_id, topic_path(reply.topic_id), title: reply.topic.title)%>
+          <%= link_to(reply.topic_id, main_app.user_topic_path(user_login:reply.topic.user_login,id:reply.topic.id), title: reply.topic.title)%>
         </td>
       <% else %>
         <td><%= reply.topic_id %></td>

@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', target: @reply %>
 
   <div class="form-group">
-    <h4><%= link_to @reply.topic&.title, topic_path(@reply.topic_id), target: "_blank" %></h4>
+    <h4><%= link_to @reply.topic&.title, main_app.user_topic_path(user_login:@reply.topic.user_login,id:@reply.topic.id), target: "_blank" %></h4>
     <div class="mt-2">
       <%= user_name_tag(@reply.user) %>
       <%= timeago @reply.created_at %>

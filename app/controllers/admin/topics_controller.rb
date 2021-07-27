@@ -7,7 +7,7 @@ module Admin
     def index
       @topics = Topic.unscoped
       if params[:q].present?
-        qstr = "%#{params[:q].downcase}%"
+        qstr = "%#{params[:q]}%"
         @topics = @topics.where("title LIKE ?", qstr)
       end
       if params[:login].present?
