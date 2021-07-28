@@ -198,6 +198,7 @@ Rails.application.routes.draw do
   # 比如 http://localhost:3000/huacnlee
   get "users/city/:id", to: "users#city", as: "location_users"
   get "users", to: "users#index", as: "users"
+  get "users/test", to: "users#test", as: "users_test"
   get "/:user_login/topics/:id", to: "topics#show", as: "user_topic"
 
   constraints(id: /[#{User::LOGIN_FORMAT}]*/o) do

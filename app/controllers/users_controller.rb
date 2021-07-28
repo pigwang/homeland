@@ -59,4 +59,11 @@ class UsersController < ApplicationController
     end
     super(*(args << options))
   end
+
+  def test
+    user = User.new(:login => 'dapig', :name => '王大猪', :email => 'dapig@goodgoodgood.com')
+    user.save
+    render json: {hello: user.name}
+  end
+
 end
