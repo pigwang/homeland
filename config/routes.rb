@@ -229,7 +229,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:year/:month/:day/postname', to: 'articles#showname', constraints: {
+  get '/:year/:month/:day/postname', to: 'topics#showname', constraints: {
     year:       /\d{4}/,
     month:      /\d{1,2}/,
     day:        /\d{1,2}/
