@@ -198,8 +198,13 @@ Rails.application.routes.draw do
   # 比如 http://localhost:3000/huacnlee
   get "users/city/:id", to: "users#city", as: "location_users"
   get "users", to: "users#index", as: "users"
-  get "users/test", to: "users#test", as: "users_test"
   get "/:user_login/topics/:id", to: "topics#show", as: "user_topic"
+
+  get '/:year/:month/:day/postname', to: 'articles#showname', constraints: {
+    year:       /\d{4}/,
+    month:      /\d{1,2}/,
+    day:        /\d{1,2}/
+  }
 
   constraints(id: /[#{User::LOGIN_FORMAT}]*/o) do
     resources :users, path: "", as: "users" do
