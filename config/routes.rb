@@ -200,11 +200,7 @@ Rails.application.routes.draw do
   get "users", to: "users#index", as: "users"
   get "/:user_login/topics/:id", to: "topics#show", as: "user_topic"
 
-  get '/:year/:month/:day/postname', to: 'articles#showname', constraints: {
-    year:       /\d{4}/,
-    month:      /\d{1,2}/,
-    day:        /\d{1,2}/
-  }
+
 
   constraints(id: /[#{User::LOGIN_FORMAT}]*/o) do
     resources :users, path: "", as: "users" do
@@ -232,6 +228,12 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/:year/:month/:day/postname', to: 'articles#showname', constraints: {
+    year:       /\d{4}/,
+    month:      /\d{1,2}/,
+    day:        /\d{1,2}/
+  }
 
   match "*path", to: "home#error_404", via: :all
 end
