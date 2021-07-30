@@ -229,7 +229,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:year/:month/:day/:postname', to: 'topics#showname'
+  get '/:year/:month/:day/:postname', to: 'topics#showname', constraints: {
+    year:       /\d{4}/,
+    month:      /\d{1,2}/,
+    day:        /\d{1,2}/
+  }
 
   match "*path", to: "home#error_404", via: :all
 end
