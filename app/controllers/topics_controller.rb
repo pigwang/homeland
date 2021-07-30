@@ -43,8 +43,8 @@ class TopicsController < ApplicationController
 
   def showname
     post_name = params[:postname]
-    topic = Topic.unscoped.where("post_name = ?", post_name).take
-    render json: {hello: topic. title}
+    topic = Topic.includes(:user).where("post_name = ?", post_name).take
+    redirect_to user_topic_path(user_login: topic.user_login, id: topic.id)
   end
 
   def show
