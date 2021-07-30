@@ -202,32 +202,32 @@ Rails.application.routes.draw do
 
 
 
-  # constraints(id: /[#{User::LOGIN_FORMAT}]*/o) do
-  #   resources :users, path: "", as: "users" do
-  #     member do
-  #       get :feed
-  #       # User only
-  #       get :topics
-  #       get :replies
-  #       get :favorites
-  #       get :blocked
-  #       post :block
-  #       post :unblock
-  #       post :follow
-  #       post :unfollow
-  #       get :followers
-  #       get :following
-  #       get :reward
-  #     end
-  #
-  #     resources :team_users, path: "people" do
-  #       member do
-  #         post :accept
-  #         post :reject
-  #       end
-  #     end
-  #   end
-  # end
+  constraints(id: /[#{User::LOGIN_FORMAT}]*/o) do
+    resources :users, path: "", as: "users" do
+      member do
+        get :feed
+        # User only
+        get :topics
+        get :replies
+        get :favorites
+        get :blocked
+        post :block
+        post :unblock
+        post :follow
+        post :unfollow
+        get :followers
+        get :following
+        get :reward
+      end
+
+      resources :team_users, path: "people" do
+        member do
+          post :accept
+          post :reject
+        end
+      end
+    end
+  end
 
   get '/:year/:month/:day/postname', to: 'topics#showname', constraints: {
     year:       /\d{4}/,
