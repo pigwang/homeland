@@ -229,7 +229,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:year/:month/:day/:postname', to: 'topics#showname', constraints: {
+  get '/:year/:month/:day/:postname', to: 'topics#redirect_post', constraints: {
     year:       /\d{4}/,
     month:      /\d{1,2}/,
     day:        /\d{1,2}/

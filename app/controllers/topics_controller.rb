@@ -41,11 +41,6 @@ class TopicsController < ApplicationController
     render layout: false if stale?([@node, @topics])
   end
 
-  def showname
-    postname = params[:postname]
-    render json: {hello: postname}
-  end
-
   def show
     topic_id = params[:id]
     @topic = Rails.cache.fetch("#{topic_id}/topic") do
@@ -184,4 +179,11 @@ class TopicsController < ApplicationController
     return nil if cannot?(:show, team)
     team.id
   end
+
+  def redirect_post
+    post_name  = params[:postname]
+    topic = Topic.unscoped.where("post_name = ?", post_name).take
+    render json: {hello: topic.title}
+  end
+
 end
