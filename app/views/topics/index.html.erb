@@ -15,11 +15,9 @@
       </div>
       <% if  @topics.total_pages > 1 %>
         <div class="card-footer clearfix">
-          <% if (action_name.in? %(index recent)) && (controller_name == "topics") %>
+
             <%= paginate @topics, total_pages: Topic.total_pages %>
-          <% else %>
-            <%= paginate @topics %>
-          <% end %>
+
         </div>
       <% end %>
     </div>
