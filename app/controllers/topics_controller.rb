@@ -42,8 +42,9 @@ class TopicsController < ApplicationController
   end
 
   def showname
-    postname = params[:postname]
-    render json: {hello: postname}
+    post_name = params[:postname]
+    topic = Topic.unscoped.where("post_name = ?", post_name).take
+    render json: {hello: topic. title}
   end
 
   def show
