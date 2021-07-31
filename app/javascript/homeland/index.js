@@ -11,7 +11,6 @@ Turbolinks.start();
 Turbolinks.setProgressBarDelay(200);
 // Increment Turbolinks cache size upto 30
 Turbolinks.controller.cache.size = 30;
-TubrolinksPrefetch.start();
 
 window.Rails = require("@rails/ujs");
 Rails.start();
