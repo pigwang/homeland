@@ -44,7 +44,7 @@ class TopicsController < ApplicationController
   def showname
     post_name = params[:postname]
     topic = Topic.includes(:user).where("post_name = ?", post_name).take
-    
+
     if topic.nil?
       redirect_to "https://www.dazhuanlan.com/"
     else
