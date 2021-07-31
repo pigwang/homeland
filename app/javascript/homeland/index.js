@@ -5,7 +5,6 @@ window.Backbone = require("backbone");
 window._ = require("underscore");
 
 import Turbolinks from "turbolinks";
-import TubrolinksPrefetch from "turbolinks-prefetch";
 
 window.Turbolinks = Turbolinks;
 Turbolinks.start();
